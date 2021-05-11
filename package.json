@@ -1,0 +1,21 @@
+{
+  "name": "reserve.io",
+  "version": "0.1.0",
+  "description": "Reserve.io is an application for equipment reservations, making it possible to insert, read, edit and remove reservations.",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon index.js"
+  },
+  "keywords": [
+    "reserve.io",
+    "Node.js",
+    "CRUD"
+  ],
+  "author": "Jeferson Lucas",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.17.1",
+    "uuid": "^8.3.2"
+  }
+}
