@@ -1,3 +1,7 @@
+/** `reserveController.js`
+ * Esse arquivo serve para controlar o inicio o servidor da API.
+ */
+
 // Importando a biblioteca FileSystem
 import { promises as fs } from "fs";
 

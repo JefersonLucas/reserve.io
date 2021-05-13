@@ -1,34 +1,43 @@
-// Importando a biblioteca FileSystem
-import { promises as fs } from "fs";
-// Importando a versão 4 da biblioteca UUID
-import { v4 as uuid } from "uuid";
+/** `routerController.js`:
+ * esse arquivo faz os controles das rotas.
+ */
 
-// Desestruturando
-const { readFile, writeFile } = fs;
+/** `pipes`:
+ * nesse arquivo se encontra a leitura e escrita do arquivo JSON aonde se encrontra a API.
+ */
+import pipe from "../pipes/reservePipe.js";
+
+/** `middleware`:
+ * nesse arquivo se encontra as regras de negócio da API.
+ */
+import middleware from "../middlewares/reserveMiddleware.js";
+
+// Desestruturações `middleware` e `pipe`
+const { readFileReserve, writeFileReserve } = pipe;
+
+const {
+  createController,
+  deleteController,
+  updateController,
+  getByIdController,
+} = middleware;
 
 /** `createReserve`:
- * cria uma nova reserva
+ * cria uma nova reserva.
  */
-const createReserve = async (require, response) => {
-  // Buscando os dados da requisição
-  let reserva = require.body;
+const createReserve = async (request, response) => {
+  // Buscando os dados da reseva na requisição
+  let reserva = request.body;
 
   try {
     // Ler o arquivo `reserve.json`
-    const data = JSON.parse(await readFile(global.PATH_API));
-
-    // Cria uma nova reserva passando um id com UUID
-    reserva = {
-      id: uuid(),
-      ...reserva,
-    };
-    // Adicionando a nova reserva dentro do Array reservas
-    data.reservas.push(reserva);
+    const data = await readFileReserve();
+    // Recebendo `createController` as regras de negócio da rota
+    const newData = createController(data, reserva);
     // Escrevendo no arquivo `reserve.json` as novas reservas
-    await writeFile(global.PATH_API, JSON.stringify(data, null, 2));
-    // Enviando a nova reserva para o usuário
-    response.send(data);
-    response.end();
+    await writeFileReserve(newData);
+    // Enviando a nova reserva criada pelo o usuário
+    response.send(newData.reservas).end();
   } catch (error) {
     response.status(400).send({ error: error.message });
   }
@@ -39,10 +48,10 @@ const createReserve = async (require, response) => {
  */
 const readReserve = async (_, response) => {
   try {
-    // Ler o arquivo reserve.json
-    const data = JSON.parse(await readFile(global.PATH_API));
+    // Ler o arquivo `reserve.json`
+    const data = await readFileReserve();
     // Enviando as reservas para o usuário
-    response.send(data);
+    response.send(data.reservas).end();
   } catch (error) {
     response.status(500).send({ error: error.message });
   }
@@ -51,16 +60,17 @@ const readReserve = async (_, response) => {
 /** `deleteReserve`:
  * deleta reservas
  */
-const deleteReserve = async (require, response) => {
-  // Buscando os dados da requisição
-  let id = require.params.id;
+const deleteReserve = async (request, response) => {
+  // Buscando o `id` nos parâmetros da requisição
+  let id = request.params.id;
+
   try {
-    // Ler o arquivo reserve.json
-    const data = JSON.parse(await readFile(global.PATH_API));
-    // Filtro
-    data.reservas = data.reservas.filter((reserva) => reserva.id !== id);
+    // Ler o arquivo `reserve.json`
+    const data = await readFileReserve();
+    // Remoção do arquivo recebido pelo `deleteController`
+    data.reservas = deleteController(data, id);
     // Escrevendo no arquivo `reserve.json` a modificação da remoção da reserva
-    await writeFile(global.PATH_API, JSON.stringify(data, null, 2));
+    await writeFileReserve(data);
     // Finalizando a requisição
     response.end();
   } catch (error) {
@@ -71,22 +81,35 @@ const deleteReserve = async (require, response) => {
 /** `updateReserve`:
  * atualiza reservas
  */
-const updateReserve = async (require, response) => {
-  // Buscando os dados da requisição
-  let reserva = require.body;
+const updateReserve = async (request, response) => {
+  // Buscando os dados da reseva na requisição
+  let reserva = request.body;
+
+  try {
+    // Ler o arquivo `reserve.json`
+    const data = await readFileReserve();
+    // Recebendo os novos dados atualizado pelo `updateController`
+    const newData = updateController(data, reserva);
+    // Escrevendo no arquivo `reserve.json` as modificações na reserva
+    await writeFileReserve(newData);
+    // Enviando as reservas para o usuário
+    response.send(newData.reservas).end();
+  } catch (error) {
+    response.status(500).send({ error: error.message });
+  }
+};
+
+const getByIdReserve = async (request, response) => {
+  // Buscando o `id` nos parâmetros da requisição
+  let id = request.params.id;
+
   try {
     // Ler o arquivo reserve.json
-    const data = JSON.parse(await readFile(global.PATH_API));
-    // Buscando o index pelo o id passado por parâmetro
-    const index = data.reservas.findIndex(
-      (reserve) => reserve.id === reserva.id,
-    );
-    data.reservas[index] = reserva;
-    // Escrevendo no arquivo `reserve.json` as modificações na reserva
-    await writeFile(global.PATH_API, JSON.stringify(data, null, 2));
+    const data = await readFileReserve();
+    // Recebendo os dados de `getByIdController`
+    const newData = getByIdController(data, id);
     // Enviando as reservas para o usuário
-    response.send(data);
-    response.end();
+    response.send(newData).end();
   } catch (error) {
     response.status(500).send({ error: error.message });
   }
@@ -97,4 +120,5 @@ export default {
   readReserve,
   deleteReserve,
   updateReserve,
+  getByIdReserve,
 };

@@ -4,12 +4,12 @@
   "description": "Reserve.io is an application for equipment reservations, making it possible to insert, read, edit and remove reservations.",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon index.js"
+    "server": "start chrome http://localhost:1010/reserve/ && nodemon index.js"
   },
   "keywords": [
     "reserve.io",
-    "Node.js",
-    "CRUD"
+    "express",
+    "uuid"
   ],
   "author": "Jeferson Lucas",
   "license": "MIT",

@@ -17,6 +17,6 @@ const app = express();
 app.use(express.json());
 
 // Utilizando as rotas
-app.use("/api", reserveRouter);
+app.use("/reserve", reserveRouter);
 
 app.listen(1010, reserveController.start);
