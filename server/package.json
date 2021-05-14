@@ -1,7 +1,7 @@
 {
   "name": "reserve.io",
   "version": "0.1.0",
-  "description": "Reserve.io is an application for equipment reservations, making it possible to insert, read, edit and remove reservations.",
+  "description": "Reserve.io API to insert, read, edit and remove reservations.",
   "main": "index.js",
   "scripts": {
     "server": "start chrome http://localhost:1010/reserve/ && nodemon index.js"
@@ -16,6 +16,7 @@
   "type": "module",
   "dependencies": {
     "express": "^4.17.1",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "winston": "^3.3.3"
   }
 }

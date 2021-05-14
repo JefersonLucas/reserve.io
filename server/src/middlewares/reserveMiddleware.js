@@ -9,10 +9,35 @@ import { v4 as uuid } from "uuid";
  * enviado pelo método `POST`, essa função cria um novo documento.
  */
 const createController = (data, reserva) => {
+  // Desestruturando a reserva
+  const {
+    user_name,
+    user_mail,
+    equipment_name,
+    equipment_id,
+    local,
+    status,
+    time_in,
+    time_out,
+    date_in,
+    date_out,
+  } = reserva;
+
   // Cria uma novo objeto `reserva`
   reserva = {
-    id: uuid(), // passando um id com UUID
-    ...reserva, // Todo o resto da reserva
+    // passando um id com UUID
+    id: uuid(),
+    // Todo o resto da reserva
+    user_name: user_name,
+    user_mail: user_mail,
+    equipment_name: equipment_name,
+    equipment_id: equipment_id,
+    local: local,
+    status: status,
+    time_in: time_in,
+    time_out: time_out,
+    date_in: date_in,
+    date_out: date_out,
   };
   // Adicionando a nova reserva dentro do Array `reservas`
   data.reservas.push(reserva);

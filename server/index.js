@@ -7,8 +7,12 @@ import reserveRouter from "./src/routes/reserveRouter.js";
 // Importando arquivo de controladoras
 import reserveController from "./src/controllers/reserveController.js";
 
-// Caminho do arquivo reserve.json
-global.PATH_API = "./api/reserve.json";
+// Importando logger do winston
+import logger from "./src/config/loggerConfig.js";
+
+// Variáveis globais
+global.PATH_API = "../api/reserve.json"; // Caminho do arquivo reserve.json
+global.logger = logger(); // Logger do winston
 
 // Instanciando a biblioteca express
 const app = express();

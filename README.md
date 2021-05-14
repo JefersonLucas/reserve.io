@@ -44,7 +44,43 @@ npm server
 yarn server
 ```
 
+## Contents
+
+## Reserve.io source code
+
+What is included in reserve.io, including source code and precompiled.
+
+```txt
+reserve.io/
+├── api/
+│   └── reserve.json
+├── client/
+├── server/
+│   ├── src/
+│   │   ├── config/
+│   │   │   └── loggerConfig.js
+│   │   ├── controllers/
+│   │   │   ├── reserveController.js
+│   │   │   └── routerController.js
+│   │   ├── middlewares/
+│   │   │   └── reserveMiddleware.js
+│   │   ├── pipes/
+│   │   │   └── reservePipe.js
+│   │   └── routes/
+│   │       └── reserveRouter.js
+│   ├── index.js
+│   ├── nodemon.json
+│   ├── package.json
+│   └── yarn.lock
+├── .gitignore.md
+├── CONTRIBUTING.md
+├── LICENSE.md
+└── README.md
+```
+
 ## Built with
+
+Reserve.io was built with care with the following technologies:
 
 - [HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML) - HyperText Markup Language.
 - [CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS) - Style language.
@@ -52,6 +88,7 @@ yarn server
 - [Node.js](https://nodejs.org/en/) - Javascript environment.
 - [NPM](https://www.npmjs.com/) - Node package manager.
 - [Express](https://expressjs.com/) - Framework for Node.js web application.
+- [Winston](https://www.npmjs.com/package/winston) - Simple record library.
 - [UUID](https://www.npmjs.com/package/uuid) - Universal unique identifier.
 - [JSON](https://www.json.org/) - Lightweight data exchange format.
 - [Insomnia](https://insomnia.rest/) - API Client.

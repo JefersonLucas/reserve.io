@@ -38,22 +38,32 @@ const createReserve = async (request, response) => {
     await writeFileReserve(newData);
     // Enviando a nova reserva criada pelo o usuário
     response.send(newData.reservas).end();
+    logger.info(
+      `${request.method} ${request.baseUrl} - created: ${JSON.stringify(
+        reserva.user_name,
+      )} reservation`,
+    );
   } catch (error) {
     response.status(400).send({ error: error.message });
+    logger.error(`${request.method} ${request.baseUrl} - ${error.message}`);
   }
 };
 
 /** `readReserve`:
  * ler as reservas
  */
-const readReserve = async (_, response) => {
+const readReserve = async (request, response) => {
   try {
     // Ler o arquivo `reserve.json`
     const data = await readFileReserve();
     // Enviando as reservas para o usuário
-    response.send(data.reservas).end();
+    response.send(data).end();
+    logger.info(
+      `${request.method} ${request.baseUrl} - read: ${data.reservas.length} document(s)`,
+    );
   } catch (error) {
     response.status(500).send({ error: error.message });
+    logger.error(`${request.method} ${request.baseUrl} - ${error.message}`);
   }
 };
 
@@ -73,8 +83,10 @@ const deleteReserve = async (request, response) => {
     await writeFileReserve(data);
     // Finalizando a requisição
     response.end();
+    logger.info(`${request.method} ${request.baseUrl} - deleted: ${id}`);
   } catch (error) {
     response.status(500).send({ error: error.message });
+    logger.error(`${request.method} ${request.baseUrl} - ${error.message}`);
   }
 };
 
@@ -94,8 +106,12 @@ const updateReserve = async (request, response) => {
     await writeFileReserve(newData);
     // Enviando as reservas para o usuário
     response.send(newData.reservas).end();
+    logger.info(
+      `${request.method} ${request.baseUrl} - updated ${newData.length} document`,
+    );
   } catch (error) {
     response.status(500).send({ error: error.message });
+    logger.error(`${request.method} ${request.baseUrl} - ${error.message}`);
   }
 };
 
@@ -110,8 +126,10 @@ const getByIdReserve = async (request, response) => {
     const newData = getByIdController(data, id);
     // Enviando as reservas para o usuário
     response.send(newData).end();
+    logger.info(`${request.method} ${request.baseUrl} - read: ${id} document`);
   } catch (error) {
     response.status(500).send({ error: error.message });
+    logger.error(`${request.method} ${request.baseUrl} - ${error.message}`);
   }
 };
 
