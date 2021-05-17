@@ -63,17 +63,17 @@ const updateController = (data, reserva) => {
   return data;
 };
 
-/** `getByIdController`:
+/** `readByIdController`:
  * enviado pelo método `GET`, essa função busca por `id` um documento.
  */
-const getByIdController = (data, id) => {
+const readByIdController = (data, id) => {
   // Buscando o respectivo `id`
   return data.reservas.find((reserva) => reserva.id === id);
 };
 
 export default {
   createController,
-  deleteController,
+  readByIdController,
   updateController,
-  getByIdController,
+  deleteController,
 };

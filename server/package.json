@@ -4,7 +4,8 @@
   "description": "Reserve.io API to insert, read, edit and remove reservations.",
   "main": "index.js",
   "scripts": {
-    "server": "start chrome http://localhost:1010/reserve/ && nodemon index.js"
+    "dev": "start chrome http://localhost:1010/reserve.io/v1/read && nodemon index.js",
+    "server": "nodemon index.js"
   },
   "keywords": [
     "reserve.io",
@@ -16,6 +17,7 @@
   "type": "module",
   "dependencies": {
     "express": "^4.17.1",
+    "swagger-ui-express": "^4.1.6",
     "uuid": "^8.3.2",
     "winston": "^3.3.3"
   }

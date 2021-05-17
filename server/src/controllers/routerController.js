@@ -17,9 +17,9 @@ const { readFileReserve, writeFileReserve } = pipe;
 
 const {
   createController,
-  deleteController,
+  readByIdController,
   updateController,
-  getByIdController,
+  deleteController,
 } = middleware;
 
 /** `createReserve`:
@@ -44,7 +44,10 @@ const createReserve = async (request, response) => {
       )} reservation`,
     );
   } catch (error) {
-    response.status(400).send({ error: error.message });
+    response.status(405).send({
+      description: "Invalid input",
+      error: error.message,
+    });
     logger.error(`${request.method} ${request.baseUrl} - ${error.message}`);
   }
 };
@@ -57,7 +60,7 @@ const readReserve = async (request, response) => {
     // Ler o arquivo `reserve.json`
     const data = await readFileReserve();
     // Enviando as reservas para o usuário
-    response.send(data).end();
+    response.send(data.reservas).end();
     logger.info(
       `${request.method} ${request.baseUrl} - read: ${data.reservas.length} document(s)`,
     );
@@ -115,15 +118,15 @@ const updateReserve = async (request, response) => {
   }
 };
 
-const getByIdReserve = async (request, response) => {
+const readReserveById = async (request, response) => {
   // Buscando o `id` nos parâmetros da requisição
   let id = request.params.id;
 
   try {
     // Ler o arquivo reserve.json
     const data = await readFileReserve();
-    // Recebendo os dados de `getByIdController`
-    const newData = getByIdController(data, id);
+    // Recebendo os dados de `readByIdController`
+    const newData = readByIdController(data, id);
     // Enviando as reservas para o usuário
     response.send(newData).end();
     logger.info(`${request.method} ${request.baseUrl} - read: ${id} document`);
@@ -138,5 +141,5 @@ export default {
   readReserve,
   deleteReserve,
   updateReserve,
-  getByIdReserve,
+  readReserveById,
 };

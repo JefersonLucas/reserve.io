@@ -8,20 +8,20 @@ import routerController from "../controllers/routerController.js";
 const {
   createReserve,
   readReserve,
-  deleteReserve,
+  readReserveById,
   updateReserve,
-  getByIdReserve,
+  deleteReserve,
 } = routerController;
 
 // Utilizando o roteador do express
 const router = express.Router();
 
 // Rotas
-router.post("/", createReserve);
-router.get("/", readReserve);
-router.delete("/:id", deleteReserve);
-router.put("/", updateReserve);
-router.get("/:id", getByIdReserve);
+router.post("/create", createReserve);
+router.get("/read", readReserve);
+router.get("/read/:id", readReserveById);
+router.put("/update", updateReserve);
+router.delete("/delete/:id", deleteReserve);
 
 // Exportando o roteador
 export default router;

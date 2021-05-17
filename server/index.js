@@ -1,5 +1,6 @@
 // Importando bibliotecas
 import express from "express";
+import swaggerUi from "swagger-ui-express";
 
 // Importanto arquivo de rotas
 import reserveRouter from "./src/routes/reserveRouter.js";
@@ -10,17 +11,25 @@ import reserveController from "./src/controllers/reserveController.js";
 // Importando logger do winston
 import logger from "./src/config/loggerConfig.js";
 
+// Importando o documento do swagger
+import { swaggerDocument } from "./docs/doc.js";
+
 // Variáveis globais
-global.PATH_API = "../api/reserve.json"; // Caminho do arquivo reserve.json
+global.PATH_API = "./api/reserve.json"; // Caminho do arquivo reserve.json
 global.logger = logger(); // Logger do winston
 
 // Instanciando a biblioteca express
-const app = express();
+const api = express();
 
 // Utilizando JSON
-app.use(express.json());
-
+api.use(express.json());
+// Utilizando o Swagger Document
+api.use(
+  "/reserve.io/v1/doc",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument),
+);
 // Utilizando as rotas
-app.use("/reserve", reserveRouter);
+api.use("/reserve.io/v1", reserveRouter);
 
-app.listen(1010, reserveController.start);
+api.listen(1010, reserveController.start);
