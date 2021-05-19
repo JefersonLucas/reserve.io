@@ -1,0 +1,17 @@
+{
+  "reservas": [
+    {
+      "id": "d39bf747-cb05-497e-9f37-c9fb7ef53f88",
+      "user_name": "Jeferson Lucas",
+      "user_mail": "jefersonlucas@email.com",
+      "equipment_name": "DataShow S27+",
+      "equipment_id": "03400",
+      "local": "Anatomia I",
+      "status": "waiting",
+      "time_in": "19:00:00",
+      "time_out": "22:00:00",
+      "date_in": "2021-05-11",
+      "date_out": "2021-05-12"
+    }
+  ]
+}

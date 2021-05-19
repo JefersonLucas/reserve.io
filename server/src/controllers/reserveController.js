@@ -1,3 +1,7 @@
+/** `reserveController.js`
+ * Esse arquivo serve para controlar o inicio o servidor da API.
+ */
+
 // Importando a biblioteca FileSystem
 import { promises as fs } from "fs";
 
@@ -9,7 +13,7 @@ const start = async () => {
   try {
     // Tentando ler o arquivo JSON
     await readFile(global.PATH_API);
-    console.log("API started!");
+    logger.info("API started!");
   } catch (error) {
     // JSON inicial
     const reserve = {
@@ -18,10 +22,10 @@ const start = async () => {
     // Escrevendo o arquivo JSON
     writeFile(global.PATH_API, JSON.stringify(reserve))
       .then(() => {
-        console.log("API started and file created");
+        logger.info("API started and file created");
       })
       .catch((error) => {
-        console.log(error);
+        logger.error(error);
       });
   }
 };
