@@ -1,21 +1,24 @@
 {
   "name": "reserve.io",
   "version": "0.1.0",
-  "description": "Reserve.io is an application for equipment reservations, making it possible to insert, read, edit and remove reservations.",
+  "description": "Reserve.io API to insert, read, edit and remove reservations.",
   "main": "index.js",
   "scripts": {
+    "dev": "start chrome http://localhost:1010/reserve.io/v1/read && nodemon index.js",
     "server": "nodemon index.js"
   },
   "keywords": [
     "reserve.io",
-    "Node.js",
-    "CRUD"
+    "express",
+    "uuid"
   ],
   "author": "Jeferson Lucas",
   "license": "MIT",
   "type": "module",
   "dependencies": {
     "express": "^4.17.1",
-    "uuid": "^8.3.2"
+    "swagger-ui-express": "^4.1.6",
+    "uuid": "^8.3.2",
+    "winston": "^3.3.3"
   }
 }
