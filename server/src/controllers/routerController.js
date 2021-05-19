@@ -108,9 +108,9 @@ const updateReserve = async (request, response) => {
     // Escrevendo no arquivo `reserve.json` as modificações na reserva
     await writeFileReserve(newData);
     // Enviando as reservas para o usuário
-    response.send(newData.reservas).end();
+    response.send(reserva).end();
     logger.info(
-      `${request.method} ${request.baseUrl} - updated ${newData.length} document`,
+      `${request.method} ${request.baseUrl} - updated ${reserva.id} document`,
     );
   } catch (error) {
     response.status(500).send({ error: error.message });

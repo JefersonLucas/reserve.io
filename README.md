@@ -32,7 +32,9 @@ git clone https://github.com/JefersonLucas/reserve.io.git
 
 The files that are in the remote repository are now cloned into the local repository.
 
-2. Install the required `server/` dependencies:
+### Starting server
+
+1. Install the required `server/` dependencies:
 
 ```bash
 cd server/
@@ -42,7 +44,7 @@ npm install
 yarn install
 ```
 
-3. Start the server on the port [localhost:1010](http://localhost:1010/reserve.io/reservas/)
+2. Start the server on the port [localhost:1010/reserve.io/v1/](http://localhost:1010/reserve.io/v1/)
 
 ```bash
 npm server
@@ -50,11 +52,13 @@ npm server
 yarn server
 ```
 
+3. Go to [http://localhost:1010/reserve.io/v1/doc/](http://localhost:1010/reserve.io/v1/doc) to view the API documentation.
+
 ## Contents
 
 ## Application source code
 
-Everything that is included in the application.
+What is included in the application.
 
 ```txt
 reserve.io/
@@ -62,19 +66,19 @@ reserve.io/
 ├── server/
 │   ├── api/
 │   ├── docs/
-│   ├── src/
-│   │   ├── config/
-│   │   ├── controllers/
-│   │   ├── middlewares/
-│   │   ├── pipes/
-│   │   └── routes/
+│   └── src/
+│       ├── config/
+│       ├── controllers/
+│       ├── middlewares/
+│       ├── pipes/
+│       └── routes/
 ├── .gitignore
 ├── CONTRIBUTING.md
 ├── LICENSE.md
 └── README.md
 ```
 
-## server source code
+## Server source code
 
 What is included in `server/`.
 
@@ -108,18 +112,19 @@ server/
 
 The reserve.io app has been carefully developed with the following technologies:
 
-- [HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML) - HyperText Markup Language.
-- [CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS) - Style language.
-- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/javascript) - Scripting language.
-- [Node.js](https://nodejs.org/en/) - Javascript environment.
-- [NPM](https://www.npmjs.com/) - Node package manager.
-- [Express](https://expressjs.com/) - Framework for Node.js web application.
-- [Winston](https://www.npmjs.com/package/winston) - Simple record library.
-- [Swagger](https://swagger.io/) - API documentation.
-- [UUID](https://www.npmjs.com/package/uuid) - Universal unique identifier.
-- [JSON](https://www.json.org/) - Lightweight data exchange format.
-- [Insomnia](https://insomnia.rest/) - API Client.
-- [Visual Studio Code](https://code.visualstudio.com/) - Code editor.
+- Technologies used on the **server**
+
+  - [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/javascript) - Scripting language.
+  - [Node.js](https://nodejs.org/en/) - Javascript environment.
+  - [NPM](https://www.npmjs.com/) - Node package manager.
+  - [Yarn](https://yarnpkg.com/) - Package manager.
+  - [Express](https://expressjs.com/) - Framework for Node.js web application.
+  - [Winston](https://www.npmjs.com/package/winston) - Simple record library.
+  - [Swagger](https://swagger.io/) - API documentation.
+  - [UUID](https://www.npmjs.com/package/uuid) - Universal unique identifier.
+  - [JSON](https://www.json.org/) - Lightweight data exchange format.
+  - [Insomnia](https://insomnia.rest/) - API Client.
+  - [Visual Studio Code](https://code.visualstudio.com/) - Code editor.
 
 ## Contributing
 
