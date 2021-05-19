@@ -1,7 +1,7 @@
 {
   "name": "reserve.io",
-  "version": "0.1.0",
-  "description": "Reserve.io API to insert, read, edit and remove reservations.",
+  "version": "0.2.0",
+  "description": "Reserve.io server API to insert, read, edit and remove reservations.",
   "main": "index.js",
   "scripts": {
     "dev": "start chrome http://localhost:1010/reserve.io/v1/read && nodemon index.js",
