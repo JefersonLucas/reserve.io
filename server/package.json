@@ -1,7 +1,7 @@
 {
   "name": "reserve.io",
-  "version": "0.1.0",
-  "description": "Reserve.io API to insert, read, edit and remove reservations.",
+  "version": "0.2.0",
+  "description": "Reserve.io server API to insert, read, edit and remove reservations.",
   "main": "index.js",
   "scripts": {
     "dev": "start chrome http://localhost:1010/reserve.io/v1/read && nodemon index.js",
@@ -16,6 +16,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "swagger-ui-express": "^4.1.6",
     "uuid": "^8.3.2",
